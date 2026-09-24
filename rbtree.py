@@ -114,7 +114,7 @@ class RBTree:
                 uncle = z.parent.parent.right
                 if uncle.color == RBNode.RED:
                     z.parent.color = RBNode.BLACK
-                    # BUG: uncle 未变黑
+                    uncle.color = RBNode.BLACK
                     z.parent.parent.color = RBNode.RED
                     z = z.parent.parent
                 else:
@@ -128,7 +128,7 @@ class RBTree:
                 uncle = z.parent.parent.left
                 if uncle.color == RBNode.RED:
                     z.parent.color = RBNode.BLACK
-                    # BUG: uncle 未变黑
+                    uncle.color = RBNode.BLACK
                     z.parent.parent.color = RBNode.RED
                     z = z.parent.parent
                 else:
@@ -180,7 +180,7 @@ class RBTree:
                     self._rotate_left(x.parent)
                     w = x.parent.right
                 if w.left.color == RBNode.BLACK and w.right.color == RBNode.BLACK:
-                    # BUG: 兄弟未变红，黑高不守恒
+                    w.color = RBNode.RED
                     x = x.parent
                 else:
                     if w.right.color == RBNode.BLACK:
